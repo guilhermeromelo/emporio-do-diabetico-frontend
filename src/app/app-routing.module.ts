@@ -9,7 +9,7 @@ export const Approutes: Routes = [
         path: '',
         component: FullComponent,
         children: [
-            { path: '', redirectTo: '/dashboard/classic', pathMatch: 'full' },
+            { path: '', redirectTo: '/ecom/products', pathMatch: 'full' },
             {
                 path: 'dashboard',
                 loadChildren: () => import('./dashboards/dashboard.module').then(m => m.DashboardModule)
