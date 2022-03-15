@@ -10,10 +10,10 @@
                     placement="bottom-right">
                     <a ngbDropdownToggle href="javascript:void(0)" class="dropdown-toggle" id="Userdd" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <h5 class="m-b-0 user-name font-medium">Steave Jobs
+                        <h5 class="m-b-0 user-name font-medium">Entre / Cadastre-se
                             <i class="fa fa-angle-down"></i>
                         </h5>
-                        <span class="op-5 user-email">steve@gmail.com</span>
+                        <span class="op-5 user-email">para ver seus pedidos</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Userdd" ngbDropdownMenu>
                         <a class="dropdown-item" href="javascript:void(0)">
@@ -34,8 +34,8 @@
         </li>
         <li class="p-15 m-t-10">
             <a href="javascript:void(0)" class="btn btn-block create-btn text-white no-block d-flex align-items-center">
-                <i class="fa fa-plus-square"></i>
-                <span class="hide-menu m-l-5">Create New</span>
+                <i class="fas fa-shopping-basket"></i>
+                <span class="hide-menu m-l-5">Meus Pedidos</span>
             </a>
         </li>
         <!-- First level menu -->
@@ -51,7 +51,7 @@
                 [ngClass]="[sidebarnavItem.class]" *ngIf="!sidebarnavItem.extralink;"
                 (click)="addExpandClass(sidebarnavItem.title)"
                 [routerLinkActive]="sidebarnavItem.submenu.length != 0 ? '' : 'active'">
-                <i-feather [name]="sidebarnavItem.icon" [ngClass]="[sidebarnavItem.icon]"></i-feather>
+                <i-feather [name]="sidebarnavItem.icon" [ngClass]="[sidebarnavItem.icon]" style="font-size: 22px;"></i-feather>
                 <span class="hide-menu">{{sidebarnavItem.title |translate}}
                     <span *ngIf="sidebarnavItem.label != '' "
                         [ngClass]="[sidebarnavItem.labelClass]">{{sidebarnavItem.label | translate}}</span>

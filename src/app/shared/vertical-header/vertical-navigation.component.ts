@@ -115,10 +115,14 @@ export class VerticalNavigationComponent {
     icon: 'de'
   }]
 
-  
+
 
   changeLanguage(lang: any) {
     this.translate.use(lang.code)
     this.selectedLanguage = lang;
+  }
+
+  goToCartPage(){
+    return '/ecom/cart';
   }
 }
