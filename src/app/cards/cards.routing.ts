@@ -2,8 +2,6 @@ import { Routes } from '@angular/router';
 
 import { BasicComponent } from './basic/basic.component';
 import { BlogPages } from './blog-pages/blog-pages.component';
-import { CustomComponent } from './custom/custom.component';
-import { WeatherComponent } from './weather/weather.component';
 
 export const CardsRoutes: Routes = [
   {
@@ -17,17 +15,6 @@ export const CardsRoutes: Routes = [
           urls: [
             { title: 'Dashboard', url: '/dashboard' },
             { title: 'Basic Cards' }
-          ]
-        }
-      },
-      {
-        path: 'customcards',
-        component: CustomComponent,
-        data: {
-          title: 'Custom Cards',
-          urls: [
-            { title: 'Dashboard', url: '/dashboard' },
-            { title: 'Custom Cards' }
           ]
         }
       },
