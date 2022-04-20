@@ -16,11 +16,13 @@ export class VerticalSidebarComponent {
   public sidebarnavItems: RouteInfo[] = [];
   path = '';
 
+  blogPageUrl = "/cards/basiccards";
+
   constructor(private menuServise: VerticalSidebarService, private router: Router) {
     this.menuServise.items.subscribe(menuItems => {
       this.sidebarnavItems = menuItems;
 
-      // Active menu 
+      // Active menu
       this.sidebarnavItems.filter(m => m.submenu.filter(
         (s) => {
           if (s.path === this.router.url) {

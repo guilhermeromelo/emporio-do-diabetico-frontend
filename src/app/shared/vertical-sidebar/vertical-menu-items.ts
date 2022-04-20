@@ -12,7 +12,7 @@ export const ROUTES: RouteInfo[] = [
         submenu: []
     },
     {
-      path: 'ecom',
+      path: 'ecom/products',
       title: 'Alimentos',
       icon: 'mdi mdi-food-fork-drink',
       class: '',
@@ -22,7 +22,7 @@ export const ROUTES: RouteInfo[] = [
       submenu: []
   },
   {
-    path: 'ecom',
+    path: 'ecom/products',
     title: 'Cosméticos',
     icon: 'mdi mdi-flower',
     class: '',

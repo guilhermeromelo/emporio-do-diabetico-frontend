@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { BasicComponent } from './basic/basic.component';
+import { BlogPages } from './blog-pages/blog-pages.component';
 import { CustomComponent } from './custom/custom.component';
 import { WeatherComponent } from './weather/weather.component';
 
@@ -31,15 +32,15 @@ export const CardsRoutes: Routes = [
         }
       },
       {
-        path: 'weathercards',
-        component: WeatherComponent,
+        path: 'blog',
+        component: BlogPages,
         data: {
-          title: 'Weather Cards',
+          title: 'Receitas',
           urls: [
-            { title: 'Dashboard', url: '/dashboard' },
-            { title: 'Weather Cards' }
+            { title: 'Página Inicial', url: '/' },
+            { title: 'Receitas' }
           ]
-        }
+        },
       }
     ]
   }
