@@ -16,7 +16,7 @@ export class VerticalSidebarComponent {
   public sidebarnavItems: RouteInfo[] = [];
   path = '';
 
-  blogPageUrl = "/cards/basiccards";
+  blogPageUrl = "/blog/home";
 
   constructor(private menuServise: VerticalSidebarService, private router: Router) {
     this.menuServise.items.subscribe(menuItems => {
@@ -59,5 +59,7 @@ export class VerticalSidebarComponent {
     this.notify.emit(!this.showClass);
   }
 
-
+  goToPedidosPage(){
+    return '/pedidos';
+  }
 }

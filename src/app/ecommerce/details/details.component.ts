@@ -10,7 +10,7 @@ export class DetailsComponent {
   }
 
   goToCartPage(){
-    return '/ecom/cart';
+    return '/carrinho';
   }
 
 }

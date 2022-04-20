@@ -10,7 +10,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 export class FullComponent implements OnInit {
   public config: PerfectScrollbarConfigInterface = {};
   active=1;
-  
+
   constructor(public router: Router) { }
 
   tabStatus = 'justified';
@@ -44,9 +44,6 @@ export class FullComponent implements OnInit {
 
   ngOnInit() {
 
-    if (this.router.url === '/') {
-      this.router.navigate(['/dashboard/classic']);
-    }
     this.defaultSidebar = this.options.sidebartype;
     this.handleSidebar();
   }

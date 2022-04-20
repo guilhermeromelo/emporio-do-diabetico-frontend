@@ -12,7 +12,7 @@ export const EcomRoutes: Routes = [
     path: '',
     children: [
       {
-        path: 'cart',
+        path: 'carrinho',
         component: CartComponent,
         data: {
           title: 'Cart',
@@ -20,7 +20,7 @@ export const EcomRoutes: Routes = [
         }
       },
       {
-        path: 'checkout',
+        path: 'finalizar-compra',
         component: CheckoutComponent,
         data: {
           title: 'Checkout',
@@ -31,7 +31,7 @@ export const EcomRoutes: Routes = [
         }
       },
       {
-        path: 'details',
+        path: 'detalhes-produto',
         component: DetailsComponent,
         data: {
           title: 'Product Details',
@@ -42,7 +42,7 @@ export const EcomRoutes: Routes = [
         }
       },
       {
-        path: 'edit',
+        path: 'editar-produto',
         component: EditComponent,
         data: {
           title: 'Edit Product',
@@ -53,7 +53,7 @@ export const EcomRoutes: Routes = [
         }
       },
       {
-        path: 'orders',
+        path: 'pedidos',
         component: OrderComponent,
         data: {
           title: 'Orders',
@@ -61,7 +61,7 @@ export const EcomRoutes: Routes = [
         }
       },
       {
-        path: 'products',
+        path: 'produtos',
         component: ProductComponent,
         data: {
           title: 'Products',

@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
 export class CartComponent {
 
   goToCheckoutPage(){
-    return '/ecom/checkout';
+    return '/finalizar-compra';
   }
 }

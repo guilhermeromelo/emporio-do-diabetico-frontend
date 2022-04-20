@@ -123,6 +123,6 @@ export class VerticalNavigationComponent {
   }
 
   goToCartPage(){
-    return '/ecom/cart';
+    return '/carrinho';
   }
 }

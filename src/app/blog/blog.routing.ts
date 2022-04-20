@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
 
-import { BasicComponent } from './basic/basic.component';
 import { BlogPages } from './blog-pages/blog-pages.component';
+import { BasicComponent } from './home-page/home-page.component';
 
-export const CardsRoutes: Routes = [
+export const BlogRoutes: Routes = [
   {
     path: '',
     children: [
       {
-        path: 'basiccards',
+        path: 'home',
         component: BasicComponent,
         data: {
           title: 'Basic Cards',
@@ -19,7 +19,7 @@ export const CardsRoutes: Routes = [
         }
       },
       {
-        path: 'blog',
+        path: 'page',
         component: BlogPages,
         data: {
           title: 'Receitas',

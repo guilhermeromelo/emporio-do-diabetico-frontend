@@ -9,9 +9,9 @@ export const Approutes: Routes = [
         path: '',
         component: FullComponent,
         children: [
-            { path: '', redirectTo: '/ecom/products', pathMatch: 'full' },
-            { path: 'cards', loadChildren: () => import('./cards/cards.module').then(m => m.CardsModule) },
-            { path: 'ecom', loadChildren: () => import('./ecommerce/ecom.module').then(m => m.EcomModule) },
+            { path: '', redirectTo: '/produtos', pathMatch: 'full' },
+            { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
+            { path: '', loadChildren: () => import('./ecommerce/ecom.module').then(m => m.EcomModule) },
         ]
     },
     {
