@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { defaultImage } from 'src/app/app-constants';
 @Component({
   templateUrl: 'blog-pages.component.html'
 })
@@ -13,4 +14,5 @@ export class BlogPages {
     return '/ecom/cart';
   }
 
+    image = defaultImage;
 }

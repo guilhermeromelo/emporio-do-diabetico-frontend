@@ -31,7 +31,7 @@ export const EcomRoutes: Routes = [
         }
       },
       {
-        path: 'detalhes-produto',
+        path: 'detalhes-produto/:id',
         component: DetailsComponent,
         data: {
           title: 'Product Details',

@@ -32,24 +32,15 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
 },
 {
-  path: '',
-  title: 'Ecommerce Pages',
+  path: 'editar-produto',
+  title: 'Editar Produto',
   icon: 'shopping-cart',
-  class: 'has-arrow',
+  class: '',
   extralink: false,
   label: '',
   labelClass: '',
   submenu: [
-      {
-          path: 'editar-produto',
-          title: 'Edit Products',
-          icon: 'mdi mdi-cart-plus',
-          class: '',
-          extralink: false,
-          label: '',
-          labelClass: '',
-          submenu: []
-      }
+
   ]
 },
 ];
