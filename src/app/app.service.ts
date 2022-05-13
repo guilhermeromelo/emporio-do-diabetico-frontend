@@ -15,7 +15,7 @@ export class AppService {
           resolve(res);
         },
         (err) => {
-          resolve(err);
+          reject(err);
         }
       );
     });

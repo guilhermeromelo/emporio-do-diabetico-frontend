@@ -24,9 +24,10 @@ export default class CartController {
     let localCart: LocalStorageCart = {products: []};
     if(cart?.products?.length > 0){
       for(let item of cart.products){
-        if(item.produto.id)
-          localCart.products.push({produtoId: item.produto.id, quantidade: item.quantidade})
+        if(item && item?.produto?.id)
+          localCart.products.push({produtoId: item.produto.id, quantidade: item.quantidade ?? 1})
       }
+      localStorage.setItem("cart", JSON.stringify(localCart));
     } else
       this.initCart();
   }

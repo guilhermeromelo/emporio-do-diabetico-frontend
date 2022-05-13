@@ -19,7 +19,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of cart.products">
+                            <tr *ngFor="let item of cart.products; let i = index" [attr.data-index]="i">
                                 <td width="150">
                                     <img src="{{item.produto.imagem}}" alt="iMac" width="80">
                                 </td>
@@ -27,13 +27,15 @@
                                     <h5 class="font-500">{{item.produto.nome}}</h5>
                                     <p>{{item.produto.subtitulo}}</p>
                                 </td>
-                                <td width="120">R$ {{item.produto.preco}}</td>
+                                <td width="120">R$ {{ (item.produto.preco).toFixed(2) }}</td>
                                 <td width="70">
-                                    <input type="text" class="form-control" >
+                                    <input type="number" class="form-control" [(ngModel)]="item.quantidade"
+                                      (keyup)="updateQtItem($event, i)" (change)="onQtChange($event, i)">
                                 </td>
-                                <td width="120" align="center" class="font-500">R$ {{item.precoTotalProduto}}</td>
+                                <td width="120" align="center" class="font-500">R$ {{ (item.precoTotalProduto).toFixed(2) }}</td>
                                 <td align="center">
-                                    <a href="javascript:void(0)" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete">
+                                    <a href="javascript:void(0)" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete"
+                                      (click)="removeItem(i)">
                                         <i class="ti-trash text-dark"></i>
                                     </a>
                                 </td>
@@ -45,7 +47,7 @@
                         <a class="btn btn-dark btn-outline" href="/">
                             <i class="fas fa-arrow-left"></i> Continuar Comprando</a>
                         <div class="ml-auto">
-                            <a class="btn btn-success" href="{{goToCheckoutPage()}}">
+                            <a class="btn btn-success" (click)="goToCheckoutPage()">
                                 <i class="fa fa fa-shopping-cart"></i> Finalizar Compra</a>
                         </div>
                     </div>
@@ -60,9 +62,9 @@
                 <h5 class="card-title">Resumo do Carrinho</h5>
                 <hr>
                 <small>Valor Total</small>
-                <h2>R$612</h2>
+                <h2>R$ {{ cart.totalPrice.toFixed(2) }}</h2>
                 <hr>
-                <a class="btn btn-success" href="{{goToCheckoutPage()}}"><i class="fa fa fa-shopping-cart" style="padding-right: 5px;"></i>Finalizar Compra</a>
+                <a class="btn btn-success" (click)="goToCheckoutPage()"><i class="fa fa fa-shopping-cart" style="padding-right: 5px;"></i>Finalizar Compra</a>
             </div>
         </div>
         <div class="card">

@@ -7,30 +7,31 @@
       <div class="card-body" style="padding-left: 80px; padding-right: 80px;">
         <h5 class="card-title">Resumo dos Produtos</h5>
         <div class="table-responsive">
-          <table class="table table-bordered v-middle">
+          <table class="table product-overview">
             <thead>
-              <tr>
-                <th>Imagem</th>
-                <th>Produto</th>
-                <th>Quantidade</th>
-                <th>Valor</th>
-              </tr>
+                <tr>
+                    <th>Imagem</th>
+                    <th>Informações do produto</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th style="text-align:center">Total</th>
+                </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <img src="{{image}}" alt="iMac" width="80">
-                </td>
-                <td>Produto</td>
-                <td>20</td>
-                <td class="font-500">R$153,90</td>
-              </tr>
-              <tr>
-                <td colspan="3" class="font-500" align="right" style="color: red; font-size: 20px; font-weight: bold;">Valor Total</td>
-                <td class="font-500" style="color: red; font-size: 20px; font-weight: bold;">R$3078,00</td>
-              </tr>
+                <tr *ngFor="let item of cart.products; let i = index" [attr.data-index]="i">
+                    <td width="150">
+                        <img src="{{item.produto.imagem}}" alt="iMac" width="80">
+                    </td>
+                    <td width="550">
+                        <h5 class="font-500">{{item.produto.nome}}</h5>
+                        <p>{{item.produto.subtitulo}}</p>
+                    </td>
+                    <td width="120">R$ {{ (item.produto.preco).toFixed(2) }}</td>
+                    <td width="70"> {{ item.quantidade }}</td>
+                    <td width="120" align="center" class="font-500">R$ {{ (item.precoTotalProduto).toFixed(2) }}</td>
+                </tr>
             </tbody>
-          </table>
+        </table>
         </div>
         <hr>
         <h5 class="card-title">Endereço de Entrega</h5>

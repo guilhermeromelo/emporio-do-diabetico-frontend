@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { defaultImage } from 'src/app/app-constants';
 import { AppService } from 'src/app/app.service';
 import CartController from 'src/app/cartController/cartController';
-import { Cart, LocalStorageCart } from 'src/app/cartController/cartModel';
+import { Cart, CartItem, LocalStorageCart } from 'src/app/cartController/cartModel';
 import Produto from 'src/app/models/produto';
 @Component({
   templateUrl: 'cart.component.html'
@@ -12,14 +12,14 @@ export class CartComponent implements OnInit{
   cart: Cart = {totalPrice:0, products:[]};
   produtosFromAPI: Produto[] = [];
 
-  constructor(private appService: AppService, private toastr: ToastrService){
+  constructor(private appService: AppService, private toastr: ToastrService, private navi: Router){
 
   }
 
-  ngOnInit(): void {
-    this.buildCartFromLocalStorageCart();
+  async ngOnInit(): Promise<void> {
+    await this.buildCartFromLocalStorageCart();
+    this.updateCartTotalPrice();
   }
-
 
   async buildCartFromLocalStorageCart(){
     let localCart = CartController.getCart();
@@ -30,6 +30,9 @@ export class CartComponent implements OnInit{
 
   async getProductsFromAPI(){
     this.produtosFromAPI = <Produto[]> await this.appService.getRequest('/produtos');
+    this.produtosFromAPI.map(produto => {
+      produto.preco = Number.parseFloat(produto.preco?.toString() ?? '0');
+    });
     console.log(this.produtosFromAPI)
   }
 
@@ -49,9 +52,47 @@ export class CartComponent implements OnInit{
     return newCart;
   }
 
-  goToCheckoutPage(){
-    return '/finalizar-compra';
+  onQtChange(event:any, i: any){
+    this.updateQt(event,i);
+    this.updateTotalItemPrice(this.cart.products[i]);
+    this.updateCartTotalPrice();
+    CartController.saveCart(this.cart);
+    console.log("comprar", this.cart);
   }
 
-  image = defaultImage;
+  updateQt(event:any,i:any){
+    try{
+      let newValue:string = event.target.value == '' ? 1 : event.target.value;
+      let qt = Number.parseInt(newValue);
+      this.cart.products[i].quantidade = qt > 0 ? qt : 1;
+    } catch(e){
+      this.cart.products[i].quantidade = 1;
+    }
+  }
+
+  updateTotalItemPrice(item: CartItem){
+    item.precoTotalProduto = item.produto?.preco ? (item.produto.preco * (item.quantidade ?? 1)): 0
+  }
+
+  updateCartTotalPrice(){
+    let newTotal = 0;
+    this.cart.products.map(prod =>{
+      newTotal += prod.precoTotalProduto ?? 0;
+    });
+    this.cart.totalPrice = newTotal;
+  }
+
+  removeItem(i:any){
+    this.cart.products.splice(i,1)
+    this.updateCartTotalPrice();
+    CartController.saveCart(this.cart);
+    console.log("comprar", this.cart);
+  }
+
+  goToCheckoutPage(){
+    if(this.cart.products.length>0)
+      this.navi.navigateByUrl('/finalizar-compra',{state: {cart: this.cart}})
+    else
+      this.toastr.error('Não há itens no carrinho!')
+  }
 }

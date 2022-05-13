@@ -1,55 +1,165 @@
-<div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(assets/images/background/login-register.jpg) no-repeat center center;">
-    <div class="auth-box m-3 m-md-0">
-        <div>
-            <div class="logo">
-                <span class="db"><img src="assets/images/logo-icon.png" style="height: 130px;" alt="logo" /></span>
-                <h5 class="font-medium m-b-20">Sign Up to Admin</h5>
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center"
+  style="background:url(assets/images/background/login-register.jpg) no-repeat center center;">
+  <div class="auth-box m-3 m-md-0" style="width: 1000px; max-width: 1000px;">
+    <div>
+      <div class="logo">
+        <span class="db"><img src="assets/images/logo-icon.png" style="height: 130px;" alt="logo" /></span>
+        <h5 class="font-medium m-b-20">Cadastre-se</h5>
+      </div>
+      <!-- Form -->
+      <div class="row">
+        <div class="col-12">
+          <form class="form-horizontal m-t-20" [formGroup]="clientForm">
+            <div class="form-group row ">
+              <div class="col-4">
+                <label>Nome</label>
+                <input class="form-control" type="text" formControlName="nome">
+                <small class="form-text text-danger"
+                  *ngIf="!clientForm.get('nome')?.valid && (clientForm.get('nome')?.dirty || clientForm.get('nome')?.touched)">
+                  Campo Obrigatório!
+                </small>
+              </div>
+              <div class="col-4">
+                <label>Sobrenome</label>
+                <input class="form-control" type="text" formControlName="sobrenome">
+                <small class="form-text text-danger"
+                *ngIf="!clientForm.get('sobrenome')?.valid && (clientForm.get('sobrenome')?.dirty || clientForm.get('sobrenome')?.touched)">
+                  Campo Obrigatório!
+                </small>
+              </div>
+              <div class="col-4">
+                <label>CPF</label>
+                <input class="form-control" type="text" formControlName="cpf" mask="000.000.000-00">
+                <small class="form-text text-danger"
+                *ngIf="!clientForm.get('cpf')?.valid && (clientForm.get('cpf')?.dirty || clientForm.get('cpf')?.touched)">
+                  Campo Obrigatório!
+                </small>
+              </div>
             </div>
-            <!-- Form -->
-            <div class="row">
-                <div class="col-12">
-                    <form class="form-horizontal m-t-20" action="index.html">
-                        <div class="form-group row ">
-                            <div class="col-12 ">
-                                <input class="form-control" type="text" required=" " placeholder="Name">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-12 ">
-                                <input class="form-control" type="text" required=" " placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-12 ">
-                                <input class="form-control" type="password" required=" " placeholder="Password">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-12 ">
-                                <input class="form-control" type="password" required=" " placeholder="Confirm Password">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-12 ">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                    <label class="custom-control-label" for="customCheck1">I agree to all <a href="javascript:void(0)">Terms</a></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group text-center ">
-                            <div class="col-xs-12 p-b-20 ">
-                                <a class="btn btn-block btn-lg btn-info" href="/dashboard/dashboard1">SIGN UP</a>
-                            </div>
-                        </div>
-                        <div class="form-group m-b-0 m-t-10 ">
-                            <div class="col-sm-12 text-center ">
-                                Already have an account? <a href="/authentication/login" class="text-info m-l-5 "><b>Sign In</b></a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="form-group row">
+              <div class="col-3">
+                <label>Telefone</label>
+                <input class="form-control" type="text" formControlName="telefone">
+                <small class="form-text text-danger"
+                *ngIf="!clientForm.get('telefone')?.valid && (clientForm.get('telefone')?.dirty || clientForm.get('telefone')?.touched)">
+                  Campo Obrigatório!
+                </small>
+              </div>
+              <div class="col-3">
+                <label>Email</label>
+                <input class="form-control" type="text" formControlName="email">
+                <small class="form-text text-danger"
+                *ngIf="!clientForm.get('email')?.valid && (clientForm.get('email')?.dirty || clientForm.get('email')?.touched)">
+                  Campo Obrigatório!
+                </small>
+              </div>
+              <div class="col-3">
+                <label>Senha</label>
+                <input class="form-control" type="password" formControlName="senha" (ngModelChange)="invalidPasswordError = false">
+                <small class="form-text text-danger"
+                *ngIf="!clientForm.get('senha')?.valid && (clientForm.get('senha')?.dirty || clientForm.get('senha')?.touched)">
+                  Campo Obrigatório!
+                </small>
+                <small class="form-text text-danger"
+                *ngIf="invalidPasswordError">
+                  A senha e confirmação da senha devem ser iguais!
+                </small>
+              </div>
+              <div class="col-3">
+                <label>Confirmar Senha</label>
+                <input class="form-control" type="password" formControlName="confirmarSenha" (ngModelChange)="invalidPasswordError = false">
+                <small class="form-text text-danger"
+                *ngIf="!clientForm.get('confirmarSenha')?.valid && (clientForm.get('confirmarSenha')?.dirty ||
+                  clientForm.get('confirmarSenha')?.touched)">Campo Obrigatório!
+                </small>
+                <small class="form-text text-danger"
+                *ngIf="invalidPasswordError">
+                  A senha e confirmação da senha devem ser iguais!
+                </small>
+              </div>
             </div>
+          </form>
+
+          <!-- <hr>
+          <form [formGroup]="addressForm">
+            <div class="form-group row">
+              <div class="col-3">
+                <label>Endereço</label>
+                <input class="form-control" type="text" formControlName="rua">
+                <small class="form-text text-danger"
+                *ngIf="!addressForm.get('rua')?.valid && (addressForm.get('rua')?.dirty ||
+                  addressForm.get('rua')?.touched)">Campo Obrigatório!
+                </small>
+              </div>
+              <div class="col-3">
+                <label>Número e Complemento</label>
+                <input class="form-control" type="text" formControlName="numero">
+                <small class="form-text text-danger"
+                *ngIf="!addressForm.get('numero')?.valid && (addressForm.get('numero')?.dirty ||
+                  addressForm.get('numero')?.touched)">Campo Obrigatório!
+                </small>
+              </div>
+              <div class="col-3">
+                <label>Bairro</label>
+                <input class="form-control" type="text" formControlName="bairro">
+                <small class="form-text text-danger"
+                *ngIf="!addressForm.get('bairro')?.valid && (addressForm.get('bairro')?.dirty ||
+                  addressForm.get('bairro')?.touched)">Campo Obrigatório!
+                </small>
+              </div>
+              <div class="col-3">
+                <label>Nome Pessoa Recebedora</label>
+                <input class="form-control" type="text" formControlName="nomeResponsavel">
+                <small class="form-text text-danger"
+                *ngIf="!addressForm.get('nomeResponsavel')?.valid && (addressForm.get('nomeResponsavel')?.dirty ||
+                  addressForm.get('nomeResponsavel')?.touched)">Campo Obrigatório!
+                </small>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-3">
+                <label>Cidade</label>
+                <input class="form-control" type="text" formControlName="cidade">
+                <small class="form-text text-danger"
+                *ngIf="!addressForm.get('cidade')?.valid && (addressForm.get('cidade')?.dirty ||
+                  addressForm.get('cidade')?.touched)">Campo Obrigatório!
+                </small>
+              </div>
+              <div class="col-3">
+                <label>Estado</label>
+                <input class="form-control" type="text" formControlName="estado">
+                <small class="form-text text-danger"
+                *ngIf="!addressForm.get('estado')?.valid && (addressForm.get('estado')?.dirty ||
+                  addressForm.get('estado')?.touched)">Campo Obrigatório!
+                </small>
+              </div>
+            </div>
+          </form> -->
+
+          <div class="form-group row">
+            <div class="col-md-12 ">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck1" [(ngModel)]="termsAccepted">
+                <label class="custom-control-label" for="customCheck1">Li e concordo com os <a
+                    href="javascript:void(0)">Termos de Uso</a></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group text-center ">
+            <div class="col-xs-12 p-b-20 ">
+              <button class="btn btn-block btn-lg btn-info" (click)="signUp()">Cadastrar-se</button>
+            </div>
+          </div>
+
+          <div class="form-group m-b-0 m-t-10 ">
+            <div class="col-sm-12 text-center ">
+              Já possui uma conta? <a href="/authentication/login" class="text-info m-l-5 "><b>Entrar</b></a>
+            </div>
+          </div>
+
         </div>
+      </div>
     </div>
+  </div>
 </div>

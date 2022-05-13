@@ -6,5 +6,11 @@ export class LocalStorageCart {
 
 export class Cart {
   totalPrice: number = 0;
-  products: {produto: Produto, quantidade: number, precoTotalProduto: number}[] = [];
+  products: CartItem[] = [];
+}
+
+export class CartItem {
+  produto?: Produto;
+  quantidade?: number;
+  precoTotalProduto?: number;
 }

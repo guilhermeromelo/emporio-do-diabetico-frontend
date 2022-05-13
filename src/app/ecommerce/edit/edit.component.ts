@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { defaultImage } from 'src/app/app-constants';
 import { AppService } from 'src/app/app.service';
 import Produto from 'src/app/models/produto';
@@ -12,7 +14,7 @@ export class EditComponent {
   imageError:string = "";
   imagem:string = "";
 
-  constructor(private fb: FormBuilder, private service: AppService){
+  constructor(private fb: FormBuilder, private service: AppService, private toastr: ToastrService, private router: Router){
     this.form = fb.group({
       nome:[this.produto.nome,[]],
       subtitulo:[this.produto.subtitulo,[]],
@@ -28,9 +30,15 @@ export class EditComponent {
     this.initImage()
   }
 
-  salvar(){
+  async salvar(){
     this.form.patchValue({ imagem: this.imagem});
-    let result = this.service.postRequest('/produtos',this.form.value);
+    try{
+      let result:any = await this.service.postRequest('/produtos',this.form.value);
+      this.toastr.success('Produto Salvo com sucesso!');
+      this.router.navigateByUrl(`/detalhes-produto/${result.id}`);
+    } catch (err){
+      this.toastr.error('Ocorreu um erro ao salvar o produto!');
+    }
   }
 
   ArrayImagesString:any;

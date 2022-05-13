@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoggedUser } from 'src/app/loginController/loggedUserModel';
+import LoginController from 'src/app/loginController/loginController';
 import { RouteInfo } from './vertical-sidebar.metadata';
 import { VerticalSidebarService } from './vertical-sidebar.service';
 
@@ -17,8 +19,17 @@ export class VerticalSidebarComponent {
   path = '';
 
   blogPageUrl = "/blog/home";
+  isLogged = false;
+  loggedUser: LoggedUser = {};
+  nameToShow = '';
 
   constructor(private menuServise: VerticalSidebarService, private router: Router) {
+    this.isLogged = LoginController.isLogged();
+    if(this.isLogged) {
+      this.loggedUser = <LoggedUser> LoginController.getLoggedUser();
+      this.nameToShow = this.formatName();
+    }
+
     this.menuServise.items.subscribe(menuItems => {
       this.sidebarnavItems = menuItems;
 
@@ -32,6 +43,13 @@ export class VerticalSidebarComponent {
       ));
       this.addExpandClass(this.path);
     });
+  }
+
+  formatName(){
+    if(this.loggedUser && this.loggedUser.name)
+      return this.loggedUser.name?.length > 18 ? this.loggedUser.name?.slice(0,17) + '...' : this.loggedUser.name
+    else
+      return '';
   }
 
   addExpandClass(element: any) {
@@ -61,5 +79,15 @@ export class VerticalSidebarComponent {
 
   goToPedidosPage(){
     return '/pedidos';
+  }
+
+  goToLoginPage(){
+    if(LoginController.isLogged() == false)
+      this.router.navigateByUrl('/authentication/login');
+  }
+
+  logout(){
+    LoginController.logout();
+    window.open('/',"_self");;
   }
 }
