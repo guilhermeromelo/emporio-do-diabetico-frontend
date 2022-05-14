@@ -9,38 +9,24 @@
                             <tr>
                                 <th>Número Pedido</th>
                                 <th>Cliente</th>
+                                <th>Valor Total</th>
                                 <th>Produtos</th>
                                 <th>Data do Pedido</th>
-                                <th>Actions</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>#85457898</td>
-                                <td>Steave Jobs</td>
-                                <td>Rounded Chair</td>
-                                <td>10-7-2017</td>
+                            <tr *ngFor="let order of orders">
+                                <td>{{order.id}}</td>
+                                <td>{{order.clienteNome}}</td>
+                                <td>R$ {{order.totalPrice}}</td>
+                                <td>{{order.itensResume}}</td>
+                                <td>{{order.dataPedidoDate ? order.dataPedidoDate.toLocaleDateString() : ""}}</td>
                                 <td>
-                                    <a href="javascript:void(0)" class="text-inverse p-r-10" data-toggle="tooltip" title="Edit">
+                                    <a href="javascript:void(0)" class="text-inverse p-r-10" data-toggle="tooltip" title="Edit"
+                                      (click)="goToOrderDetailPage(order)">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="javascript:void(0)" class="text-inverse" title="Delete" data-toggle="tooltip">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#95457898</td>
-                                <td>Varun Dhavan</td>
-                                <td>Wooden Chair</td>
-                                <td>09-7-2017</td>
-                                <td>
-                                  <a href="javascript:void(0)" class="text-inverse p-r-10" data-toggle="tooltip" title="Edit">
-                                    <i class="fas fa-eye"></i>
-                                  </a>
-                                  <a href="javascript:void(0)" class="text-inverse" title="Delete" data-toggle="tooltip">
-                                      <i class="fas fa-trash-alt"></i>
-                                  </a>
                                 </td>
                             </tr>
                         </tbody>

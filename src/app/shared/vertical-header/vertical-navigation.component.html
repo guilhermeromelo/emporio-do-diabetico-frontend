@@ -31,10 +31,10 @@
         <span class="input-group-text">Buscar Produtos</span>
       </div>
       <div style="width: 500px;">
-        <input type="text" class="form-control" placeholder="O que você está procurando ?">
+          <input type="text" class="form-control" placeholder="O que você está procurando ?" [(ngModel)]="searchTerm">
       </div>
       <div class="input-group-append">
-        <button class="btn btn-success" type="button">Pesquisar</button>
+        <button class="btn btn-success" type="button" (click)="searchProducts()">Pesquisar</button>
       </div>
     </div>
   </div>

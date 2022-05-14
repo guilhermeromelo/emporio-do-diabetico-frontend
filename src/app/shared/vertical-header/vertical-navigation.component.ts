@@ -2,6 +2,7 @@ import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -11,12 +12,13 @@ declare var $: any;
 })
 export class VerticalNavigationComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
+  searchTerm: string = "";
 
   public config: PerfectScrollbarConfigInterface = {};
 
   public showSearch = false;
 
-  constructor(private modalService: NgbModal, private translate: TranslateService) {
+  constructor(private modalService: NgbModal, private translate: TranslateService, private router: Router) {
 
     translate.setDefaultLang('en');
 
@@ -124,5 +126,10 @@ export class VerticalNavigationComponent {
 
   goToCartPage(){
     return '/carrinho';
+  }
+
+  searchProducts(){
+    console.log(this.searchTerm)
+    window.open(`/produtos/${this.searchTerm}`, '_self')
   }
 }

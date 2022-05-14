@@ -5,6 +5,10 @@ export default class Pedido{
   id?:	number;
   itens?: Produto[];
   clienteId?:	number;
+  clienteNome?: string;
+  itensResume?: string;
   enderecoEntrega?:	Endereco;
-  dataPedido?: Date;
+  dataPedido?: string;
+  dataPedidoDate?: Date;
+  totalPrice?: number;
 }

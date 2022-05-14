@@ -31,6 +31,17 @@ export const EcomRoutes: Routes = [
         }
       },
       {
+        path: 'detalhar-pedido',
+        component: CheckoutComponent,
+        data: {
+          title: 'Checkout',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Checkout' }
+          ]
+        }
+      },
+      {
         path: 'detalhes-produto/:id',
         component: DetailsComponent,
         data: {
@@ -62,6 +73,17 @@ export const EcomRoutes: Routes = [
       },
       {
         path: 'produtos',
+        component: ProductComponent,
+        data: {
+          title: 'Products',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'Products' }
+          ]
+        }
+      },
+      {
+        path: 'produtos/:pesquisa',
         component: ProductComponent,
         data: {
           title: 'Products',

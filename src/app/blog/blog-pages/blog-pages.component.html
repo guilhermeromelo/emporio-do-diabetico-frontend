@@ -2,17 +2,19 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h1 class="card-title">Receita 1</h1>
+                <h1 class="card-title">{{post.titulo}}</h1>
+                <h4 class="card-title">{{post.intro}}</h4>
                 <div class="row">
                   <div class="col-12">
                     <div class="white-box text-center">
-                        <img src="{{image}}" class="img-fluid"> </div>
+                        <img src="{{ post.image }}" class="img-fluid" style="max-height: 300px;"> </div>
                   </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-9 col-md-9 col-sm-6">
-                        <h4 class="box-title m-t-40">Modo de preparo</h4>
-                        <p>Descrição da Receita.</p>
+                        <h2 class="box-title m-t-40">Anota Aí!</h2>
+                        <hr>
+                        <div [innerHTML]="post.body"></div>
                     </div>
                 </div>
             </div>

@@ -13,6 +13,7 @@ import { EditComponent } from './edit/edit.component';
 import { OrderComponent } from './orders/orders.component';
 import { ProductComponent } from './product/product.component';
 import { AppService } from '../app.service';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { AppService } from '../app.service';
     RouterModule.forChild(EcomRoutes),
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgxMaskModule.forRoot(),
   ],
   declarations: [
     CartComponent,
