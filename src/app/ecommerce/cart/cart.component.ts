@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AppService } from 'src/app/app.service';
 import CartController from 'src/app/cartController/cartController';
 import { Cart, CartItem, LocalStorageCart } from 'src/app/cartController/cartModel';
+import LoginController from 'src/app/loginController/loginController';
 import Produto from 'src/app/models/produto';
 @Component({
   templateUrl: 'cart.component.html'
@@ -91,7 +92,10 @@ export class CartComponent implements OnInit{
 
   goToCheckoutPage(){
     if(this.cart.products.length>0)
-      this.navi.navigateByUrl('/finalizar-compra',{state: {cart: this.cart}})
+      if(LoginController.isLogged())
+        this.navi.navigateByUrl('/finalizar-compra',{state: {cart: this.cart}});
+      else
+        this.navi.navigateByUrl('/authentication/login');
     else
       this.toastr.error('Não há itens no carrinho!')
   }
